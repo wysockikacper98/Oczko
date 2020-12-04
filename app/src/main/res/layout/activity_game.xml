@@ -32,18 +32,18 @@
                     android:id="@+id/bankerTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Banker"
+                    android:text="@string/banker"
                     android:textColor="@color/black"
                     android:textSize="36sp" />
 
                 <TextView
                     android:id="@+id/bankerScoreTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
                     android:layout_weight="1"
-                    android:text="0"
+                    android:text="@string/banker_score"
                     android:textColor="@color/black"
                     android:textSize="36sp" />
             </LinearLayout>
@@ -52,7 +52,7 @@
                 android:id="@+id/bankerPointsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="@string/banker_points" />
 
             <LinearLayout
                 android:id="@+id/bankerCardLinearLayout"
@@ -71,18 +71,18 @@
                     android:id="@+id/graczTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gracz"
+                    android:text="@string/gracz"
                     android:textColor="@color/black"
                     android:textSize="36sp" />
 
                 <TextView
                     android:id="@+id/playerScoreTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
                     android:layout_weight="1"
-                    android:text="0"
+                    android:text="@string/player_score"
                     android:textColor="@color/black"
                     android:textSize="36sp" />
             </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="0" />
+                android:text="@string/player_points" />
 
             <LinearLayout
                 android:id="@+id/playerCardLinearLayout"
@@ -117,14 +117,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="100dp"
                     android:layout_marginRight="100dp"
-                    android:text="Pass"
+                    android:text="@string/pass"
                     android:visibility="invisible" />
 
                 <Button
                     android:id="@+id/addPlayerCardButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="add card"
+                    android:text="@string/add_card"
                     android:visibility="invisible" />
             </LinearLayout>
 

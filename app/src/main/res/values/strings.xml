@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Oczko</string>
+    <string name="banker">Banker</string>
+    <string name="gracz">Gracz</string>
+    <string name="pass">Pass</string>
+    <string name="add_card">Add Card</string>
+    <string name="player_score">0</string>
+    <string name="banker_points">0</string>
+    <string name="banker_score">0</string>
+    <string name="player_points">0</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.*
 import androidx.core.view.size
@@ -39,10 +40,8 @@ class GameActivity : AppCompatActivity() {
 //        cardLayout.removeViewAt(cardLayout.size - 1)
 
 
-        val bankerCardLayout: LinearLayout = findViewById(R.id.bankerCardLinearLayout)
         val playerCardLayout: LinearLayout = findViewById(R.id.playerCardLinearLayout)
 
-        val bankerPointTextView: TextView = findViewById(R.id.bankerPointsTextView)
         val playerPointTextView: TextView = findViewById(R.id.playerPointsTextView)
 
         val bankerScoreTextView: TextView = findViewById(R.id.bankerScoreTextView)
@@ -108,14 +107,13 @@ class GameActivity : AppCompatActivity() {
 
     private fun bankerWin() {
         Toast.makeText(applicationContext, "LOST", Toast.LENGTH_SHORT).show()
-        Handler().postDelayed(Runnable {
-            kotlin.run {
-                bankerScore++
-                if (bankerScore == gameLength) {
-                    gameOver(false)
-                }
-                clearBoard()
+        Handler(Looper.getMainLooper()).postDelayed({
+            bankerScore++
+            if (bankerScore == gameLength) {
+                gameOver(false)
             }
+            clearBoard()
+
         }, 2000)
     }
 
@@ -163,14 +161,12 @@ class GameActivity : AppCompatActivity() {
      */
     private fun playerWin() {
         Toast.makeText(applicationContext, "WIN", Toast.LENGTH_SHORT).show()
-        Handler().postDelayed(Runnable {
-            kotlin.run {
-                playerScore++
-                if(playerScore == gameLength){
-                    gameOver(true)
-                }
-                clearBoard()
+        Handler(Looper.getMainLooper()).postDelayed({
+            playerScore++
+            if (playerScore == gameLength) {
+                gameOver(true)
             }
+            clearBoard()
         }, 2000)
     }
 
@@ -180,16 +176,14 @@ class GameActivity : AppCompatActivity() {
      */
     private fun gameOver(didPlayerWin: Boolean) {
         val text: String
-        if(didPlayerWin) {
+        if (didPlayerWin) {
             text = "Congratulations You WIN"
-        }else{
+        } else {
             text = "Nice try! Good luck next time"
         }
         Toast.makeText(applicationContext, text, Toast.LENGTH_LONG).show()
-        Handler().postDelayed(Runnable {
-            kotlin.run {
-                startActivity(Intent(applicationContext, WinActivity::class.java))
-            }
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(applicationContext, WinActivity::class.java))
         }, 2000)
     }
 
@@ -225,37 +219,33 @@ class GameActivity : AppCompatActivity() {
         val bankerPointTextView: TextView = findViewById(R.id.bankerPointsTextView)
         val playerPointTextView: TextView = findViewById(R.id.playerPointsTextView)
 
-        Handler().postDelayed(Runnable {
-            kotlin.run {
-                addCard(bankerCardLayout, bankerPoints)
-                bankerPointTextView.text = bankerPoints.sum().toString()
+        Handler(Looper.getMainLooper()).postDelayed({
+            addCard(bankerCardLayout, bankerPoints)
+            bankerPointTextView.text = bankerPoints.sum().toString()
 
-                Handler().postDelayed(Runnable {
-                    kotlin.run {
+            Handler(Looper.getMainLooper()).postDelayed({
+                addCard(playerCardLayout, playerPoints)
+                playerPointTextView.text = playerPoints.sum().toString()
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    //druga karta bankiera odwrócona
+                    addBackCard(bankerCardLayout)
+
+                    Handler(Looper.getMainLooper()).postDelayed({
                         addCard(playerCardLayout, playerPoints)
                         playerPointTextView.text = playerPoints.sum().toString()
+                        if (playerPoints.sum() == 22) {
+                            playerWin()
+                        } else {
+                            findViewById<Button>(R.id.passButton).visibility = View.VISIBLE
+                            findViewById<Button>(R.id.addPlayerCardButton).visibility = View.VISIBLE
+                        }
+                    }, 500)
 
-                        Handler().postDelayed(Runnable {
-                            kotlin.run {
-                                //druga karta bankiera odwrócona
-                                addBackCard(bankerCardLayout)
-                                Handler().postDelayed(Runnable {
-                                    kotlin.run {
-                                        addCard(playerCardLayout, playerPoints)
-                                        playerPointTextView.text = playerPoints.sum().toString()
-                                        if (playerPoints.sum() == 22) {
-                                            playerWin()
-                                        } else {
-                                            findViewById<Button>(R.id.passButton).visibility = View.VISIBLE
-                                            findViewById<Button>(R.id.addPlayerCardButton).visibility = View.VISIBLE
-                                        }
-                                    }
-                                }, 500)
-                            }
-                        }, 500)
-                    }
                 }, 500)
-            }
+
+            }, 500)
+
         }, 500)
 
 
