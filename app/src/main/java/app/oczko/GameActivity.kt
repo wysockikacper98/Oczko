@@ -1,11 +1,14 @@
 package app.oczko
 
 import android.content.Intent
+import android.graphics.drawable.Animatable2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.core.view.size
 import kotlin.collections.ArrayList
@@ -82,30 +85,6 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-    private fun bankerPlay2(): Boolean {
-        val bankerPointTextView: TextView = findViewById(R.id.bankerPointsTextView)
-        val bankerCardLayout: LinearLayout = findViewById(R.id.bankerCardLinearLayout)
-
-        if (bankerPoints.size == 1) {
-            bankerCardLayout.removeViewAt(bankerCardLayout.size - 1)
-            addCard(bankerCardLayout, bankerPoints)
-            bankerPointTextView.text = bankerPoints.sum().toString()
-            return true
-        }
-        if (bankerPoints.sum() == 22 && bankerPoints.size == 2) {
-            bankerWin()
-            return false
-        }
-        if (bankerPoints.sum() < 17) {
-            Thread.sleep(2_000)
-            addCard(bankerCardLayout, bankerPoints)
-            bankerPointTextView.text = bankerPoints.sum().toString()
-            return true
-        }
-
-        return false
     }
 
     private fun whoWins() {
@@ -348,6 +327,7 @@ class GameActivity : AppCompatActivity() {
         layoutParams.setMargins(0, 0, 0, 0)
         //ładowanie parametrów do karty oraz dodawanie jej do widoku
         imageView.layoutParams = layoutParams
+        imageView.animation = AnimationUtils.loadAnimation(this, R.anim.entry_animation)
         layout.addView(imageView)
     }
 
