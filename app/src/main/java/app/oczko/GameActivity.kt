@@ -65,6 +65,7 @@ class GameActivity : AppCompatActivity() {
             } else {
                 //fizyka gry bankiera
                 bankerPlay()
+//                while (bankerPlay2())
                 //porównywanie wyników i wybranie wygranego
                 whoWins()
             }
@@ -81,6 +82,30 @@ class GameActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun bankerPlay2(): Boolean {
+        val bankerPointTextView: TextView = findViewById(R.id.bankerPointsTextView)
+        val bankerCardLayout: LinearLayout = findViewById(R.id.bankerCardLinearLayout)
+
+        if (bankerPoints.size == 1) {
+            bankerCardLayout.removeViewAt(bankerCardLayout.size - 1)
+            addCard(bankerCardLayout, bankerPoints)
+            bankerPointTextView.text = bankerPoints.sum().toString()
+            return true
+        }
+        if (bankerPoints.sum() == 22 && bankerPoints.size == 2) {
+            bankerWin()
+            return false
+        }
+        if (bankerPoints.sum() < 17) {
+            Thread.sleep(2_000)
+            addCard(bankerCardLayout, bankerPoints)
+            bankerPointTextView.text = bankerPoints.sum().toString()
+            return true
+        }
+
+        return false
     }
 
     private fun whoWins() {
@@ -138,17 +163,6 @@ class GameActivity : AppCompatActivity() {
 
 
         while (bankerPoints.sum() < 17) {
-
-//            Handler().postDelayed(Runnable {
-//                kotlin.run {
-//                    addCard(bankerCardLayout, bankerPoints)
-//                    bankerPointTextView.text = bankerPoints.sum().toString()
-//                }
-//            }, 2000)
-
-//            Thread.sleep(5_000)
-
-
             addCard(bankerCardLayout, bankerPoints)
             bankerPointTextView.text = bankerPoints.sum().toString()
 
