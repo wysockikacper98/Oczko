@@ -149,7 +149,7 @@ class GameActivity : AppCompatActivity() {
 
     }
 
-    /**TODO
+    /**
      * Funkcja inicjowana w przypadku wygranej gracz
      */
     private fun playerWin() {
