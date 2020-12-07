@@ -36,6 +36,7 @@ class GameActivity : AppCompatActivity() {
         //Buttons
         val passButton: Button = findViewById(R.id.passButton)
         val addCardButton: Button = findViewById(R.id.addPlayerCardButton)
+        val nextButton: Button = findViewById(R.id.nextButton)
 
 
         //TODO implementacja usuwania ostatniej karty w bankierze
@@ -57,6 +58,13 @@ class GameActivity : AppCompatActivity() {
         //Czyszczenie planszy do gry
         clearBoard()
 
+        nextButton.setOnClickListener {
+            if(!bankerPlay()){
+                whoWins()
+                nextButton.visibility = View.INVISIBLE
+            }
+        }
+
 
         //pass Button
         passButton.setOnClickListener {
@@ -66,11 +74,9 @@ class GameActivity : AppCompatActivity() {
             if (playerPointTextView.text.toString().toInt() > 21) {
                 bankerWin()
             } else {
-                //fizyka gry bankiera
-                bankerPlay()
-//                while (bankerPlay2())
-                //porównywanie wyników i wybranie wygranego
-                whoWins()
+
+                nextButton.visibility = View.VISIBLE
+                nextButton.performClick()
             }
         }
 
@@ -127,25 +133,29 @@ class GameActivity : AppCompatActivity() {
      * Jeśli ma 2 AS'y czyli 22 punkty to wygrywa
      * Jeśli
      */
-    private fun bankerPlay() {
+    private fun bankerPlay(): Boolean {
         val bankerPointTextView: TextView = findViewById(R.id.bankerPointsTextView)
         val bankerCardLayout: LinearLayout = findViewById(R.id.bankerCardLinearLayout)
-        //w pierwszej kolejności "odkrywamy" kartę
-        bankerCardLayout.removeViewAt(bankerCardLayout.size - 1)
-        addCard(bankerCardLayout, bankerPoints)
-        bankerPointTextView.text = bankerPoints.sum().toString()
 
-        if (bankerPoints.sum() == 22) {
+        if (bankerPoints.size == 1) {
+            //w pierwszej kolejności "odkrywamy" kartę
+            bankerCardLayout.removeViewAt(bankerCardLayout.size - 1)
+            addCard(bankerCardLayout, bankerPoints)
+            bankerPointTextView.text = bankerPoints.sum().toString()
+            return true;
+        }
+
+        if (bankerPoints.sum() == 22 && bankerPoints.size == 2) {
             // wygrana poprzez posiadanie dwóch Asów
             bankerWin()
         }
 
-
-        while (bankerPoints.sum() < 17) {
+        if(bankerPoints.sum() < 17) {
             addCard(bankerCardLayout, bankerPoints)
             bankerPointTextView.text = bankerPoints.sum().toString()
-
+            return true;
         }
+        return false;
 
     }
 
@@ -202,6 +212,7 @@ class GameActivity : AppCompatActivity() {
         //włącznie buttonów
         findViewById<Button>(R.id.passButton).visibility = View.VISIBLE
         findViewById<Button>(R.id.addPlayerCardButton).visibility = View.VISIBLE
+        findViewById<Button>(R.id.nextButton).visibility = View.INVISIBLE
         findViewById<TextView>(R.id.bankerScoreTextView).text = bankerScore.toString()
         findViewById<TextView>(R.id.playerScoreTextView).text = playerScore.toString()
         firstCardDeal(bankerCardLayout, playerCardLayout)
