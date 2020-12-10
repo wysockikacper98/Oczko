@@ -50,6 +50,10 @@ class GameActivity : AppCompatActivity() {
 
         val bankerScoreTextView: TextView = findViewById(R.id.bankerScoreTextView)
         val playerScoreTextView: TextView = findViewById(R.id.playerScoreTextView)
+        val graczTextView: TextView = findViewById(R.id.graczTextView)
+
+        graczTextView.text = "${intent.getCharSequenceExtra("playerName")}"
+
 
         bankerScoreTextView.text = bankerScore.toString()
         playerScoreTextView.text = playerScore.toString()
@@ -59,7 +63,7 @@ class GameActivity : AppCompatActivity() {
         clearBoard()
 
         nextButton.setOnClickListener {
-            if(!bankerPlay()){
+            if (!bankerPlay()) {
                 whoWins()
                 nextButton.visibility = View.INVISIBLE
             }
@@ -150,7 +154,7 @@ class GameActivity : AppCompatActivity() {
             bankerWin()
         }
 
-        if(bankerPoints.sum() < 17) {
+        if (bankerPoints.sum() < 17) {
             addCard(bankerCardLayout, bankerPoints)
             bankerPointTextView.text = bankerPoints.sum().toString()
             return true;
