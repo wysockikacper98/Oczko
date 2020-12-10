@@ -39,11 +39,6 @@ class GameActivity : AppCompatActivity() {
         val nextButton: Button = findViewById(R.id.nextButton)
 
 
-        //TODO implementacja usuwania ostatniej karty w bankierze
-//        val cardLayout: LinearLayout = findViewById(R.id.bankerCardLinearLayout)
-//        cardLayout.removeViewAt(cardLayout.size - 1)
-
-
         val playerCardLayout: LinearLayout = findViewById(R.id.playerCardLinearLayout)
 
         val playerPointTextView: TextView = findViewById(R.id.playerPointsTextView)
@@ -146,7 +141,7 @@ class GameActivity : AppCompatActivity() {
             bankerCardLayout.removeViewAt(bankerCardLayout.size - 1)
             addCard(bankerCardLayout, bankerPoints)
             bankerPointTextView.text = bankerPoints.sum().toString()
-            return true;
+            return true
         }
 
         if (bankerPoints.sum() == 22 && bankerPoints.size == 2) {
@@ -157,9 +152,9 @@ class GameActivity : AppCompatActivity() {
         if (bankerPoints.sum() < 17) {
             addCard(bankerCardLayout, bankerPoints)
             bankerPointTextView.text = bankerPoints.sum().toString()
-            return true;
+            return true
         }
-        return false;
+        return false
 
     }
 

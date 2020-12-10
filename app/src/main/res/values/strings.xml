@@ -8,4 +8,5 @@
     <string name="banker_points">0</string>
     <string name="banker_score">0</string>
     <string name="player_points">0</string>
+    <string name="next">next</string>
 </resources>
