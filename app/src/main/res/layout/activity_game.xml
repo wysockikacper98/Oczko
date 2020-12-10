@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/purple_700"
     android:isScrollContainer="true"
     android:orientation="vertical"
     tools:context=".GameActivity">
@@ -26,6 +26,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -33,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/banker"
-                    android:textColor="@color/black"
+                    android:textColor="#E5E5E5"
                     android:textSize="36sp" />
 
                 <TextView
@@ -44,7 +45,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_weight="1"
                     android:text="@string/banker_score"
-                    android:textColor="@color/black"
+                    android:textColor="#E5E5E5"
                     android:textSize="36sp" />
             </LinearLayout>
 
@@ -52,7 +53,8 @@
                 android:id="@+id/bankerPointsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/banker_points" />
+                android:text="@string/banker_points"
+                android:textColor="#E5E5E5" />
 
             <LinearLayout
                 android:id="@+id/bankerCardLinearLayout"
@@ -72,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gracz"
-                    android:textColor="@color/black"
+                    android:textColor="#E5E5E5"
                     android:textSize="36sp" />
 
                 <TextView
@@ -83,7 +85,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_weight="1"
                     android:text="@string/player_score"
-                    android:textColor="@color/black"
+                    android:textColor="#E5E5E5"
                     android:textSize="36sp" />
             </LinearLayout>
 
@@ -92,7 +94,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/player_points" />
+                android:text="@string/player_points"
+                android:textColor="#E5E5E5" />
 
             <LinearLayout
                 android:id="@+id/playerCardLinearLayout"
@@ -113,26 +116,29 @@
 
                 <Button
                     android:id="@+id/passButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:text="@string/pass"
                     android:visibility="invisible"
+                    app:backgroundTint="#43AA8B"
                     tools:visibility="visible" />
 
                 <Button
                     android:id="@+id/nextButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:text="next"
                     android:visibility="invisible"
+                    app:backgroundTint="#43AA8B"
                     tools:visibility="visible" />
 
                 <Button
                     android:id="@+id/addPlayerCardButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:text="@string/add_card"
                     android:visibility="invisible"
+                    app:backgroundTint="#43AA8B"
                     tools:visibility="visible" />
             </LinearLayout>
 

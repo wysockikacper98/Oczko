@@ -339,7 +339,7 @@ class GameActivity : AppCompatActivity() {
     private fun addView(imageView: ImageView, layout: LinearLayout) {
         //wybieranie parametrów dla wyświeltanej karty
         val layoutParams: LinearLayout.LayoutParams = LinearLayout.LayoutParams(width, height)
-        layoutParams.setMargins(0, 0, 0, 0)
+        layoutParams.setMargins(10, 0, 10, 0)
         //ładowanie parametrów do karty oraz dodawanie jej do widoku
         imageView.layoutParams = layoutParams
         imageView.animation = AnimationUtils.loadAnimation(this, R.anim.entry_animation)
