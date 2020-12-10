@@ -9,4 +9,11 @@
     <string name="banker_score">0</string>
     <string name="player_points">0</string>
     <string name="next">next</string>
+    <string name="colon">:</string>
+    <string name="gameName">Oczko</string>
+    <string name="startButton">Start</string>
+    <string name="logo_oczko">Logo Oczko</string>
+    <string name="number">number</string>
+    <string name="player_name">Player Name</string>
+    <string name="circle">Circle</string>
 </resources>
