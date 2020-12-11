@@ -12,6 +12,7 @@
         android:id="@+id/ekranStartowyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
         android:shadowColor="#000000"
         android:shadowRadius="10"
         android:text="@string/gameName"
