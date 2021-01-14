@@ -16,4 +16,6 @@
     <string name="number">number</string>
     <string name="player_name">Player Name</string>
     <string name="circle">Circle</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="exit">Exit</string>
 </resources>

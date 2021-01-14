@@ -18,7 +18,8 @@ class GameActivity : AppCompatActivity() {
     companion object {
         const val width: Int = 300
         const val height: Int = width * 2
-        const val gameLength: Int = 5
+        //dłguość trwania rozgrywki
+        const val gameLength: Int = 3
         var countCards: Int = 0
         var cardShuffled = Cards.cardShuffled
         var bankerPoints = arrayListOf<Int>()
@@ -177,16 +178,38 @@ class GameActivity : AppCompatActivity() {
      * @param didPlayerWin True if player WIN, else False
      */
     private fun gameOver(didPlayerWin: Boolean) {
-        val text: String
+
+
+
+        // sending data to WinActivity screen
+        val intent = Intent(applicationContext, WinActivity::class.java)
         if (didPlayerWin) {
-            text = "Congratulations You WIN"
+            intent.putExtra("whoWin", "Win")
         } else {
-            text = "Nice try! Good luck next time"
+            intent.putExtra("whoWin", "Lose")
         }
-        Toast.makeText(applicationContext, text, Toast.LENGTH_LONG).show()
-        Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(applicationContext, WinActivity::class.java))
-        }, 2000)
+        intent.putExtra("bankerScore", bankerScore.toString())
+        intent.putExtra("playerScore", playerScore.toString())
+        startActivity(intent)
+
+        bankerScore = 0
+        playerScore = 0
+
+
+
+
+//        val text: String
+//        if (didPlayerWin) {
+//            text = "Congratulations You WIN"
+//        } else {
+//            text = "Nice try! Good luck next time"
+//        }
+//        Toast.makeText(applicationContext, text, Toast.LENGTH_LONG).show()
+
+
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            startActivity(Intent(applicationContext, WinActivity::class.java))
+//        }, 2000)
     }
 
     /**
